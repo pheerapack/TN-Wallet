@@ -8,4 +8,3 @@ type merchant struct {
 func (m *merchant)Increase(bal float32) {
 	m.Balance+=bal
 }
-

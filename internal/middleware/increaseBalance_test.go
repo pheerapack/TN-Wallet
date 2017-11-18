@@ -13,5 +13,3 @@ func TestDisplayMerchantBalanceAfterIncrease1000(t *testing.T) {
 	}
 
 }
-
-
