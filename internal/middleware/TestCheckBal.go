@@ -1,16 +1,14 @@
 package middleware
 
-
 import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"mux"
 	"net/http"
-	"time"
 	"strconv"
 	"testing"
+	"time"
 )
-
 
 func ResponseWithJSON(w http.ResponseWriter, code int) {
 
@@ -24,14 +22,14 @@ func ResponseWithJSON(w http.ResponseWriter, code int) {
 //Struct id,amt 10002 1,000
 type WalletIDAmt struct {
 	WalletID string
-	Amount float32
+	Amount   float32
 }
 
 type WalletAccount struct {
-	ID        bson.ObjectId `bson:"_id,omitempty"`
-	WalletID	int 	`json:"wallet_id" bson:"wallet_id"`
-	Name		string 	`json:"wallet_name" bson:"wallet_name"`
-	Balance		float32	`json:"balance" bson:"balance"`
+	ID       bson.ObjectId `bson:"_id,omitempty"`
+	WalletID int           `json:"wallet_id" bson:"wallet_id"`
+	Name     string        `json:"wallet_name" bson:"wallet_name"`
+	Balance  float32       `json:"balance" bson:"balance"`
 }
 
 func CheckBal(s *mgo.Session) func(w http.ResponseWriter, r *http.Request) {
@@ -45,7 +43,7 @@ func CheckBal(s *mgo.Session) func(w http.ResponseWriter, r *http.Request) {
 		var account WalletAccount
 		c := session.DB("wallets").C("balance")
 		err := c.Find(bson.M{"wallet_id": wallets}).One(&account)
-		if err !=nil {
+		if err != nil {
 			ResponseWithJSON(w, http.StatusBadRequest)
 		}
 		ResponseWithJSON(w, http.StatusOK)
@@ -53,7 +51,6 @@ func CheckBal(s *mgo.Session) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func TestCheckBal(t testing.T)  {
-
+func TestCheckBal(t testing.T) {
 
 }

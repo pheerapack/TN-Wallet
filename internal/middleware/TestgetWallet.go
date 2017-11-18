@@ -4,5 +4,4 @@ import "testing"
 
 func TestgetWalletMerchant(t *testing.T) {
 
-
 }
